@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import SavannaKit
 
 public class Python3Lexer: SourceCodeRegexLexer {
 	
