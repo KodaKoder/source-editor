@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import SavannaKit
 
 public class Python3Lexer: SourceCodeRegexLexer {
 	
@@ -37,7 +38,8 @@ public class Python3Lexer: SourceCodeRegexLexer {
 		generators.append(regexGenerator("(\'\'\')(.*?)(\'\'\')", options: [.dotMatchesLineSeparators], tokenType: .string))
 
 		// Single-line string literal
-		generators.append(regexGenerator("('.*')|(\".*\")", tokenType: .string))
+		generators.append(regexGenerator("(\"|@\")[^\"\\n]*(@\"|\")", tokenType: .string))
+        generators.append(regexGenerator("('|@')[^'\\n]*(@'|')", tokenType: .string))
 
 		// Editor placeholder
 		var editorPlaceholderPattern = "(<#)[^\"\\n]*"
